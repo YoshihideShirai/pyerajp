@@ -11,10 +11,13 @@ from pyerajp.gengo import strjpftime, GengoNotFoundException
 class TestConverter(TestCase):
     @raises(GengoNotFoundException)
     def test_not_excepted_time(self):
-        exception_time = datetime.datetime(1700, 9, 7)
+        exception_time = datetime.datetime(1600, 9, 7)
         strjpftime(exception_time)
 
     def test_excepted_time(self):
+        first_genna_time = datetime.datetime(1615, 9, 5)
+        eq_(strjpftime(first_genna_time, "%O%E年"), "元和元年")
+        
         first_kyouwa_time = datetime.datetime(1801, 3, 19)
         eq_(strjpftime(first_kyouwa_time, "%O%E年"), "享和元年")
         
